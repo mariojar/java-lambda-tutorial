@@ -1,16 +1,63 @@
 package it.java.edu.optional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public class OptionalMain {
 
     public static void main(String[] args) {
+        OptionalMain main = new OptionalMain();
+        //main.trigger();
+
+//        filter2();
+
+        Optional test = Optional.of("hello");
+        System.out.println(test);
+
+        List<Optional<String>> list = List.of(
+                Optional.of("one"),
+                Optional.empty(),
+                Optional.of("three"),
+                Optional.of("four")
+        );
+
+        Optional<String> result = list.stream()
+                .flatMap(opt -> opt.map(Stream::of).orElseGet(Stream::empty))
+                .filter(s -> s.length() > 3)
+                .findFirst();
+
+        System.out.println(result.orElse("Not Found"));
+
+    }
+
+    private static void filter2() {
+        Optional<String> optional = Optional.of("Hello");
+        String result = optional.filter(s -> s.startsWith("H")).orElse("Default");
+        System.out.println(result);
+    }
+
+    private void nullableIfPresent() {
+        Optional testNull =  Optional.ofNullable(null);
+        Optional testFill =  Optional.ofNullable("Mario");
+        System.out.println("stampa optiona null : " + testNull);
+        try{
+            System.out.println("stampa optiona null : " + testNull.get());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+        testNull.ifPresent(x -> System.out.println("aqui no entra : " + x));
+        testFill.ifPresent(x -> System.out.println("porque aqui si entra : " + x));
+    }
+
+    public void trigger(){
         try {
             exceptionNull(Optional.ofNullable(null));
         } catch (MyException e) {
             e.printStackTrace();
         }
-
 
         try {
             exceptionNull(Optional.ofNullable("Mario J."));
@@ -18,15 +65,12 @@ public class OptionalMain {
             e.getMessage();
         }
 
-
         myEmptyTest();
-
-
         filter();
-
         mapOptional();
-
+        nullableIfPresent();
     }
+
 
     public void myFlatMap(){
         Product product = new Product("Bicicleta Grande",454);

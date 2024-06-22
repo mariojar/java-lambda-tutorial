@@ -167,43 +167,7 @@ public class Main {
 }
 ```
 
-## Parte 4: Quiz Finale
 
-### Domanda 1
-Che cos'è una lambda expression in Java?
-
-### Domanda 2
-Scrivi una lambda expression che prende una stringa e restituisce la sua versione in maiuscolo.
-
-### Domanda 3
-Definisci un'interfaccia funzionale che ha un metodo astratto che prende un numero intero e restituisce un booleano. 
-Implementa questa interfaccia usando una lambda expression che verifica se il numero è positivo.
-
-## Risposte
-
-### 1. Cos'è una lambda expression in Java?
-Una lambda expression è un'espressione che rappresenta una funzione anonima (senza nome) e può essere utilizzata con interfacce 
-funzionali per passare comportamenti come argomenti ai metodi.
-
-### 2. Lambda expression che prende una stringa e restituisce la sua versione in maiuscolo
-```
-(String s) -> s.toUpperCase()
-```
-
-### 3. Interfaccia funzionale che verifica se un numero è positivo
-```java
-@FunctionalInterface
-interface PositiveChecker {
-    boolean isPositive(int n);
-}
-
-public class Main {
-    public static void main(String[] args) {
-        PositiveChecker pc = (n) -> n > 0;
-        System.out.println(pc.isPositive(10)); // true
-    }
-}
-```
 
 ### Pate 5 - Le principali FunctionalInterface
 ### 5.1 Function - BiFunction
