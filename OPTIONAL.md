@@ -26,3 +26,4 @@ a. BiFunction<List<Integer>, Integer, List<Integer>> filterGreaterThan = (list, 
 b. BiFunction<List<Integer>, Integer, List<Integer>> filterGreaterThan = (list, value) -> list.stream().map(n -> n > value).collect(Collectors.toList());
 c. BiFunction<List<Integer>, Integer, List<Integer>> filterGreaterThan = (list, value) -> { List<Integer> result = new ArrayList<>(); for (Integer n : list) if (n > value) result.add(n); return result; };
 d. BiFunction<List<Integer>, Integer, List<Integer>> filterGreaterThan = (list, value) -> list.stream().reduce((acc, n) -> { if (n > value) acc.add(n); return acc; }).orElse(new ArrayList<>());
+
